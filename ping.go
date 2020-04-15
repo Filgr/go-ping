@@ -300,6 +300,9 @@ func (p *Pinger) run() {
 	timeout := time.NewTicker(p.Timeout)
 	interval := time.NewTicker(p.Interval)
 
+	defer timeout.Stop()
+	defer interval.Stop()
+
 	for {
 		select {
 		case <-p.done:
